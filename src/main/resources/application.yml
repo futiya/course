@@ -1,0 +1,54 @@
+
+server:
+  port: 8051
+  servlet:
+    context-path: /course
+spring:
+  application:
+    name: sba-course
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://9.112.55.94:3306/sba?useSSL=true&useUnicode=true&characterEncoding=utf-8
+    #url: jdbc:mysql://192.168.102.9:3306/sba?useSSL=true&useUnicode=true&characterEncoding=utf-8
+    username: admin
+    password: zaq1XSW2
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+      #database-platform: org.hibernate.dialect.MySQLDialect
+
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      #        exclude:
+      base-path: /actuator
+    enabled-by-default: true
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+ribbon:
+  eureka:
+#    enable: true
+
+
+swagger.enabled: true
+logging:
+  level:
+    root: INFO
+
